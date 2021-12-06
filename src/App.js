@@ -28,22 +28,23 @@ const reducer = (state, action) => {
 //app component
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const idRef = useRef(null);
-  const nameRef = useRef(null);
-  const autherRef = useRef(null);
+  let idRef = useRef(null);
+  let nameRef = useRef(null);
+  let autherRef = useRef(null);
 
   const addNewBook = () => {
-    const id = idRef.current.value;
-    const name = nameRef.current.value;
-    const authour = autherRef.current.value;
+    let id = idRef.current.value;
+    let name = nameRef.current.value;
+    let authour = autherRef.current.value;
     if (state.isFormOpen && (!id || !name || !authour)) {
       return alert("please fill all the fields");
     } else {
       const newBook = { id: id, bookName: name, authour: authour };
-      console.log(newBook);
       dispatch({ type: "add", payload: newBook });
-      console.log(state.booksArr);
     }
+
+    //clear inputs
+    idRef.current.value = nameRef.current.value = autherRef.current.value = "";
   };
 
   //functions
